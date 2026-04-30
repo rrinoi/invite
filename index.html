@@ -10,7 +10,7 @@ body {
   overflow: hidden;
 }
 
-/* ОБЩИЕ ЭКРАНЫ */
+/* экраны */
 .screen {
   position: fixed;
   width: 100%;
@@ -19,22 +19,43 @@ body {
   left: 0;
 }
 
-/* 💗 ПЕРВАЯ СТРАНИЦА */
+/* первый экран */
 #loading {
   background: #ff4fa3;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
 }
 
-/* КАРТИНКА НА ПЕРВОЙ СТРАНИЦЕ */
+/* второй экран */
+#main {
+  background: #ff4fa3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* скрытие */
+.hidden {
+  display: none !important;
+}
+
+/* картинка */
+#main img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* loading */
 #loading img {
   width: 260px;
   margin-bottom: 20px;
 }
 
-/* ТЕКСТ */
 .loading-text {
   font-size: 40px;
   color: white;
@@ -42,55 +63,36 @@ body {
   margin-bottom: 20px;
 }
 
-/* КНОПКА */
 .button {
   padding: 12px 28px;
   background: white;
   border-radius: 20px;
   border: none;
-  cursor: pointer;
-}
-
-/* 🖼 ВТОРАЯ СТРАНИЦА */
-#main {
-  background: #ff4fa3;
-  display: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ❗ ГЛАВНОЕ — НЕ ОБРЕЗАЕТ */
-#main img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎧 музыка -->
 <audio id="music" src="music.mp3"></audio>
 
-<!-- 💗 экран 1 -->
 <div id="loading" class="screen">
   <img src="loading.jpg">
   <div class="loading-text">loading 19.99%</div>
   <button class="button" onclick="openPage()">continue</button>
 </div>
 
-<!-- 🖼 экран 2 -->
-<div id="main" class="screen">
+<div id="main" class="screen hidden">
   <img src="collage.jpg">
 </div>
 
 <script>
 function openPage() {
-  document.getElementById("loading").style.display = "none";
-  document.getElementById("main").style.display = "flex";
-  document.getElementById("music").play();
+  document.getElementById("loading").classList.add("hidden");
+  document.getElementById("main").classList.remove("hidden");
+
+  const music = document.getElementById("music");
+  music.play().catch(() => {});
 }
 </script>
 
