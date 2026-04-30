@@ -2,12 +2,12 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>jeno's wifey's twenty</title>
+<title>20</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 /* ОБЩИЕ ЭКРАНЫ */
@@ -17,50 +17,47 @@ body {
   height: 100vh;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: 0.5s;
 }
 
 /* ПЕРВАЯ СТРАНИЦА */
 #loading {
   background: #ff4fa3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* ТЕКСТ LOADING */
+/* КАРТИНКА НА ПЕРВОЙ СТРАНИЦЕ */
+#loading img {
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+/* ТЕКСТ */
 .loading-text {
-  font-size: 48px;
-  font-weight: 900;
+  font-size: 40px;
   color: white;
-  text-shadow: 4px 4px 0 black;
-  margin-bottom: 30px;
+  text-shadow: 3px 3px 0 black;
+  margin-bottom: 20px;
 }
 
 /* КНОПКА */
 .button {
-  padding: 12px 30px;
-  border-radius: 25px;
-  border: 2px solid black;
-  background: #ffc0cb;
+  padding: 10px 25px;
+  background: white;
+  border-radius: 20px;
+  border: none;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.button:hover {
-  transform: scale(1.05);
 }
 
 /* ВТОРАЯ СТРАНИЦА */
 #main {
   background: black;
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 
-/* КОЛЛАЖ */
+/* КОЛЛАЖ НА ВЕСЬ ЭКРАН */
 #main img {
   width: 100%;
   height: 100%;
@@ -71,26 +68,25 @@ body {
 
 <body>
 
-<!-- 🎧 МУЗЫКА -->
-<audio id="music" src="music.mp3" loop></audio>
+<!-- 🎧 музыка -->
+<audio id="music" src="music.mp3"></audio>
 
-<!-- 💗 LOADING -->
+<!-- 💗 экран 1 -->
 <div id="loading" class="screen">
+  <img src="loading.jpg">
   <div class="loading-text">loading 19.99%</div>
-  <div class="button" onclick="openPage()">upgrade complete → continue</div>
+  <button class="button" onclick="openPage()">continue</button>
 </div>
 
-<!-- 🖼️ КОЛЛАЖ -->
+<!-- 🖼 экран 2 -->
 <div id="main" class="screen">
   <img src="collage.jpg">
 </div>
 
 <script>
 function openPage() {
-  document.getElementById("loading").style.opacity = "0";
-  document.getElementById("main").style.opacity = "1";
-  document.getElementById("main").style.pointerEvents = "auto";
-
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("main").style.display = "block";
   document.getElementById("music").play();
 }
 </script>
