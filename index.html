@@ -1,67 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>20</title>
+<title>jeno's wifey's twenty</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: black;
-  color: white;
-  text-align: center;
 }
 
-#screen1, #screen2 {
+/* ОБЩИЕ ЭКРАНЫ */
+.screen {
+  position: fixed;
+  width: 100%;
   height: 100vh;
+  top: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  transition: 0.5s;
 }
 
-#screen2 {
-  display: none;
+/* ПЕРВАЯ СТРАНИЦА */
+#loading {
+  background: #ff4fa3;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: white;
-  color: black;
-  border: none;
+/* ТЕКСТ LOADING */
+.loading-text {
+  font-size: 48px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 4px 4px 0 black;
+  margin-bottom: 30px;
+}
+
+/* КНОПКА */
+.button {
+  padding: 12px 30px;
+  border-radius: 25px;
+  border: 2px solid black;
+  background: #ffc0cb;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-img {
-  max-width: 90%;
-  border-radius: 10px;
+.button:hover {
+  transform: scale(1.05);
+}
+
+/* ВТОРАЯ СТРАНИЦА */
+#main {
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* КОЛЛАЖ */
+#main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
 </head>
 
 <body>
 
-<div id="screen1">
-  <h1>loading… 19.99%</h1>
-  <button onclick="start()">upgrade complete → continue</button>
+<!-- 🎧 МУЗЫКА -->
+<audio id="music" src="music.mp3" loop></audio>
+
+<!-- 💗 LOADING -->
+<div id="loading" class="screen">
+  <div class="loading-text">loading 19.99%</div>
+  <div class="button" onclick="openPage()">upgrade complete → continue</div>
 </div>
 
-<div id="screen2">
+<!-- 🖼️ КОЛЛАЖ -->
+<div id="main" class="screen">
   <img src="collage.jpg">
-  <h2>I’m ready to be twenty</h2>
-  <p>20.05 | 15:00</p>
-  <a href="https://yourwishlist.com" target="_blank">wishlist</a>
 </div>
-
-<audio id="music" src="music.mp3"></audio>
 
 <script>
-function start() {
-  document.getElementById('music').play();
-  document.getElementById('screen1').style.display = 'none';
-  document.getElementById('screen2').style.display = 'flex';
+function openPage() {
+  document.getElementById("loading").style.opacity = "0";
+  document.getElementById("main").style.opacity = "1";
+  document.getElementById("main").style.pointerEvents = "auto";
+
+  document.getElementById("music").play();
 }
 </script>
 
